@@ -2,6 +2,7 @@
 
 import Hero from './components/Hero'
 import Nav from './components/Nav'
+import Footer from './Footer'
 
 function App() {
 
@@ -11,6 +12,8 @@ function App() {
      <Nav></Nav>
      <Hero></Hero>
       
+
+      <Footer></Footer>
     </>
   )
 }
