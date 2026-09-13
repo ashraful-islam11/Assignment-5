@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react';
+import  { use, useState } from 'react';
 import type { ITechnologyType } from '../types/type';
 import { FaCheck, FaStar} from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
