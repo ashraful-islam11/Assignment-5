@@ -49,8 +49,42 @@ const Technology = ( {technologyPromise} :  ITechnologyPromiseType) => {
                 });
          }
 
-        // alert(`${technology.name} has been added to your stack!`);
-        
+         
+     }
+
+     //handleRemove : 
+     const handleRemoveingSingleTecnology = ( tech : number | string ) => {
+        const removeTechnology = addTechnology.filter( technology => technology.id !== tech );
+         setAddTechnology(removeTechnology);
+
+         toast.info(`Technology removed from stack!`), {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+            };
+     }
+
+     // all remove : 
+       
+     const handleAllSTDleate = () => {
+        setAddTechnology([]);
+        toast.info(`All technologies removed from stack! `, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
         
      }
 
@@ -108,16 +142,16 @@ const Technology = ( {technologyPromise} :  ITechnologyPromiseType) => {
                                 <h2 className='text-[16px] font-bold text-[#0F172A] '>Your Stack</h2>
 
                                 {/* <p className='text-[#94A3B8] text-sm mt-2.5 mb-4'> No technologies selected yet.</p> */}
-                                <p className='text-[#94A3B8] text-sm mt-2.5 mb-4'> {addTechnology.length} technologies selected</p>
+                                <p className='text-[#94A3B8] text-sm mt-2.5 mb-4'>{addTechnology.length > 0 ? addTechnology.length : 'No'} technologies selected</p>
                                 {
                                     addTechnology.length === 0 ?  (
-                                        <div className=' py-6 px-15 border border-[#E2E8F0] border-dashed  rounded-xl'>
+                                        <div className=' py-6 text-center border border-[#E2E8F0] border-dashed  rounded-xl'>
                                                   <p className='text-[#94A3B8] '>Your stack is empty.</p>
                                 </div>
                                     ) : (
                                         <div className='space-y-3'>
-                                            {addTechnology.map((tech, index) => (
-                                                <div key={index} className='flex items-center justify-between p-3 bg-[#F1F5F9] rounded-lg'>
+                                            {addTechnology.map((tech) => (
+                                                <div key={tech.id} className='flex items-center justify-between p-3 bg-[#F1F5F9] rounded-lg'>
                                                     <div>
                                                         <img src={tech.icon} alt={tech.name} className='w-10 h-10' /> 
                                                     </div>
@@ -127,12 +161,18 @@ const Technology = ( {technologyPromise} :  ITechnologyPromiseType) => {
 
                                                     </div>
 
-                                                    <div>
+                                                    <div onClick={()=> handleRemoveingSingleTecnology(tech.id)} className='cursor-pointer '>
                                                         <AiOutlineClose />
                                                     </div>
                                                    
+
                                                 </div>
+                                  
                                             ))}
+
+                                            <button onClick={ handleAllSTDleate}
+                                             className='btn text-[#D82C20] w-full border border-[#EC4899] font-semibold'> 
+                                             Remove All </button>
                                         </div>
                                     )}
 
