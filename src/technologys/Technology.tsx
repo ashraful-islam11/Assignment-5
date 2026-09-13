@@ -1,6 +1,6 @@
 import React, { use, useState } from 'react';
 import type { ITechnologyType } from '../types/type';
-import { FaStar} from 'react-icons/fa';
+import { FaCheck, FaStar} from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
 import { Bounce, toast } from 'react-toastify';
 
@@ -86,6 +86,7 @@ const Technology = ( {technologyPromise} :  ITechnologyPromiseType) => {
         transition: Bounce,
         });
         
+        
      }
 
 
@@ -103,7 +104,9 @@ const Technology = ( {technologyPromise} :  ITechnologyPromiseType) => {
                             <div className = ' grid  grid-cols-3 gap-5' >
                                 {
                                     technologyData.map( (technology) =>{
+                                    const isSelected = addTechnology.some((item) => item.id === technology.id);
                                         return (
+
                                             <div key={technology.id} className='technology-card border-2 shadow-xl border-[#F1F5F9] space-y-2 p-5 rounded-md'>
                                                
                                                     <div className='flex justify-between items-center '>
@@ -127,7 +130,16 @@ const Technology = ( {technologyPromise} :  ITechnologyPromiseType) => {
                                                             
                                                         </div>
                                                     </div>
-                                                    <button onClick = {()=>handleOnClick (technology)} className='text-sm bg-[#0A0F1D] text-white py-2 w-full rounded-xl cursor-pointer hover:bg-[#030836]'>Add to Stack</button>
+                                                    {/* <button onClick = {()=>handleOnClick (technology)} className='text-sm bg-[#0A0F1D] text-white py-2 w-full rounded-xl cursor-pointer hover:bg-[#030836]'>Add to Stack</button> */}
+
+                                                   <button onClick={() => handleOnClick(technology)}
+                                                        className={`text-sm py-2 w-full rounded-xl flex items-center justify-center gap-2     border  cursor-pointer ${isSelected ? 'bg-white text-[#D82C20] border-[#D82C20] font-semibold'
+                                                            : 'bg-[#0A0F1D] text-white border-transparent hover:bg-[#030836]'
+                                                        }`}>
+
+                                                        {isSelected && <FaCheck className="text-red-500" />}
+                                                        {isSelected ? 'Added to Stack' : 'Add to Stack'}
+                                                        </button>
 
                                                 </div>
                                             )
