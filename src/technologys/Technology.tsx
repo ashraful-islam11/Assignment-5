@@ -1,7 +1,9 @@
 import React, { use, useState } from 'react';
 import type { ITechnologyType } from '../types/type';
-import { FaStar, FaTrash } from 'react-icons/fa';
+import { FaStar} from 'react-icons/fa';
 import { AiOutlineClose } from 'react-icons/ai';
+import { Bounce, toast } from 'react-toastify';
+
 
 
 interface ITechnologyPromiseType {
@@ -14,9 +16,42 @@ const Technology = ( {technologyPromise} :  ITechnologyPromiseType) => {
    
 
      const [addTechnology, setAddTechnology] = useState <ITechnologyType[]>([])
+
      const handleOnClick = (technology : ITechnologyType) => {
-        setAddTechnology([...addTechnology, technology])
-        console.log(addTechnology);
+        const validation =  addTechnology.find( items => items.id === technology.id);
+
+         if(!validation){
+
+             setAddTechnology([...addTechnology, technology]);
+             toast.success(`${technology.name} has been added to your stack!`, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+                });
+         }
+         else{
+              toast.error(`${technology.name} is already in your stack!`, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+                });
+         }
+
+        // alert(`${technology.name} has been added to your stack!`);
+        
+        
      }
 
 

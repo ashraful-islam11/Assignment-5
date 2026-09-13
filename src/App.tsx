@@ -7,6 +7,7 @@ import Nav from './components/Nav'
 import type { ITechnologyType } from './types/type';
 import Technology from './technologys/Technology';
 import Footer from './components/Footer';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
       <Suspense fallback = {<h2 className='text-center'> Loading ......</h2>}>
          <Technology technologyPromise  = {technologyPromise}></Technology>
       </Suspense>
+      <ToastContainer></ToastContainer>
 
       <Footer></Footer>
       
