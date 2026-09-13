@@ -1,9 +1,9 @@
 import React from 'react';
 
-import FooterLogo from './assets/logo-text.png'
+import FooterLogo from '../assets/logo-text.png'
 const Footer = () => {
     return (
-        <footer className='container mx-auto mb-10  pt-16 ' >
+        <footer className='container mx-auto mb-10  pt-16 mt-10 ' >
             {/* footer content :  parent */}
             <div className=' footer-content grid grid-cols-12 gap-10 '>
                  {/* top footer section :  */}

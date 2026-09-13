@@ -4,7 +4,7 @@ import React from 'react';
 const Hero = () => {
     return (
         <section>
-                <div className=" grid grid-cols-2 gap-5  container mx-auto my-6 py-3 px-2  items-center bg-[#FFFFFF]">
+                <div className=" grid grid-cols-2 gap-5  container mx-auto my-6 py-3 px-2  items-center bg-[#FFFFFF] ">
  
                     <div className='grid justify-between space-y-3 px-5 ' >
                         <h1 className="text-6xl font-extrabold text-[#0F172A] ">Build Your Ideal <br />
@@ -12,7 +12,7 @@ const Hero = () => {
 
                         <p className="py-6 text-[#475569] text-[18px] " >
                             Explore frontend, backend, database, and tooling options,
-                            compare them side by side, and put together the stack that fits your
+                            compare them side by side, and put together the stack that fits your <br />
                                 next project.
                         </p>
 
