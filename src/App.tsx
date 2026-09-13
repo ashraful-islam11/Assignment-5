@@ -14,7 +14,7 @@ function App() {
 
   const technologiesFetch = async () => {
 
-    const response =  await fetch('../public/technology.json');
+    const response =  await fetch('/technology.json');
     const data = await response.json();
     return data ;
   }
