@@ -1,20 +1,24 @@
-
-import React, { use, } from 'react';
+import React, { use, useState } from 'react';
 import type { ITechnologyType } from '../types/type';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaTrash } from 'react-icons/fa';
+import { AiOutlineClose } from 'react-icons/ai';
 
 
 interface ITechnologyPromiseType {
     technologyPromise : Promise<ITechnologyType[]>
 }
-
 const Technology = ( {technologyPromise} :  ITechnologyPromiseType) => {
     // console.log(technologyPromise);
     const technologyData = use<ITechnologyType[]>(technologyPromise);
     // console.log(technologyData);
    
 
-     
+     const [addTechnology, setAddTechnology] = useState <ITechnologyType[]>([])
+     const handleOnClick = (technology : ITechnologyType) => {
+        setAddTechnology([...addTechnology, technology])
+        console.log(addTechnology);
+     }
+
 
 
     return (
@@ -41,7 +45,7 @@ const Technology = ( {technologyPromise} :  ITechnologyPromiseType) => {
                                                     </div>
 
                                                     <h2 className='text-[18px] font-bold text-[#0F172A] '> {technology.name}</h2>
-                                                    <p className='text-sm text-[#64748B] line-clamp-3 min-h-16 '>{technology.description}</p>
+                                                    <p className='text-sm text-[#64748B] line-clamp-3 min-h-15  '>{technology.description}</p>
 
                                                     <div className='flex justify-between items-center my-5 '>
                                                         
@@ -54,7 +58,7 @@ const Technology = ( {technologyPromise} :  ITechnologyPromiseType) => {
                                                             
                                                         </div>
                                                     </div>
-                                                    <button className='text-sm bg-[#0A0F1D] text-white py-2 w-full rounded-xl cursor-pointer hover:bg-[#030836]'>Add to Stack</button>
+                                                    <button onClick = {()=>handleOnClick (technology)} className='text-sm bg-[#0A0F1D] text-white py-2 w-full rounded-xl cursor-pointer hover:bg-[#030836]'>Add to Stack</button>
 
                                                 </div>
                                             )
@@ -67,10 +71,39 @@ const Technology = ( {technologyPromise} :  ITechnologyPromiseType) => {
                             <div className=' p-5 border-2 shadow-sm border-[#F1F5F9] rounded-2xl col-span-3  '>
                                 
                                 <h2 className='text-[16px] font-bold text-[#0F172A] '>Your Stack</h2>
-                                <p className='text-[#94A3B8] text-sm mt-2.5 mb-4'> No technologies selected yet.</p>
-                                 <div className=' py-6 text-center border border-[#E2E8F0] border-dashed  rounded-xl'>
+
+                                {/* <p className='text-[#94A3B8] text-sm mt-2.5 mb-4'> No technologies selected yet.</p> */}
+                                <p className='text-[#94A3B8] text-sm mt-2.5 mb-4'> {addTechnology.length} technologies selected</p>
+                                {
+                                    addTechnology.length === 0 ?  (
+                                        <div className=' py-6 px-15 border border-[#E2E8F0] border-dashed  rounded-xl'>
                                                   <p className='text-[#94A3B8] '>Your stack is empty.</p>
                                 </div>
+                                    ) : (
+                                        <div className='space-y-3'>
+                                            {addTechnology.map((tech, index) => (
+                                                <div key={index} className='flex items-center justify-between p-3 bg-[#F1F5F9] rounded-lg'>
+                                                    <div>
+                                                        <img src={tech.icon} alt={tech.name} className='w-10 h-10' /> 
+                                                    </div>
+                                                    <div className='flex-1 ml-3'>
+                                                        <h3 className='font-medium text-[#0F172A]'>{tech.name}</h3>
+                                                        <p className='text-[#94A3B8] text-sm'>{tech.category}</p>
+
+                                                    </div>
+
+                                                    <div>
+                                                        <AiOutlineClose />
+                                                    </div>
+                                                   
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                
+
+
                             </div>
 
                 </div>
